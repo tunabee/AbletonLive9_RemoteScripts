@@ -24,13 +24,15 @@ class InstrumentPresetsComponent(DisplayingModesComponent):
 
     def __init__(self, *a, **k):
         super(InstrumentPresetsComponent, self).__init__(*a, **k)
-        self._line_names = recursive_map(DisplayDataSource, (('Scale layout:',), ('4th ^', '4th >', '3rd ^', '3rd >', 'Sequent ^', 'Sequent >', '', '')))
-        self.add_mode('scale_p4_vertical', partial(self._set_scale_mode, True, 3), self._line_names[1][0])
-        self.add_mode('scale_p4_horizontal', partial(self._set_scale_mode, False, 3), self._line_names[1][1])
-        self.add_mode('scale_m3_vertical', partial(self._set_scale_mode, True, 2), self._line_names[1][2])
-        self.add_mode('scale_m3_horizontal', partial(self._set_scale_mode, False, 2), self._line_names[1][3])
-        self.add_mode('scale_m6_vertical', partial(self._set_scale_mode, True, None), self._line_names[1][4])
-        self.add_mode('scale_m6_horizontal', partial(self._set_scale_mode, False, None), self._line_names[1][5])
+        self._line_names = recursive_map(DisplayDataSource, (('Scale layout:',), ('5th ^', '5th >','4th ^', '4th >', '3rd ^', '3rd >', 'Sequent ^', 'Sequent >', '', '')))
+        self.add_mode('scale_p5_vertical',   partial(self._set_scale_mode, True,  4),    self._line_names[1][0])
+        self.add_mode('scale_p5_horizontal', partial(self._set_scale_mode, False, 4),    self._line_names[1][1])
+        self.add_mode('scale_p4_vertical',   partial(self._set_scale_mode, True,  3),    self._line_names[1][2])
+        self.add_mode('scale_p4_horizontal', partial(self._set_scale_mode, False, 3),    self._line_names[1][3])
+        self.add_mode('scale_m3_vertical',   partial(self._set_scale_mode, True,  2),    self._line_names[1][4])
+        self.add_mode('scale_m3_horizontal', partial(self._set_scale_mode, False, 2),    self._line_names[1][5])
+        self.add_mode('scale_m6_vertical',   partial(self._set_scale_mode, True, None),  self._line_names[1][6])
+        self.add_mode('scale_m6_horizontal', partial(self._set_scale_mode, False, None), self._line_names[1][7])
 
     def _update_data_sources(self, selected):
         if self.is_enabled():
@@ -61,7 +63,7 @@ class InstrumentPresetsComponent(DisplayingModesComponent):
         self._set_scales_preset_buttons(buttons[:6] if buttons else None)
 
     def _set_scales_preset_buttons(self, buttons):
-        modes = ('scale_p4_vertical', 'scale_p4_horizontal', 'scale_m3_vertical', 'scale_m3_horizontal', 'scale_m6_vertical', 'scale_m6_horizontal')
+        modes = ('scale_p5_vertical', 'scale_p5_horizontal', 'scale_p4_vertical', 'scale_p4_horizontal', 'scale_m3_vertical', 'scale_m3_horizontal', 'scale_m6_vertical', 'scale_m6_horizontal')
         self._set_mode_buttons(buttons, modes)
 
     def _set_mode_buttons(self, buttons, modes):
